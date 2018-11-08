@@ -1,0 +1,24 @@
+FROM linea-singleuser
+
+RUN conda create -n galaxy_evolution_py3 python=3.6 --yes
+RUN /bin/bash -c "source activate galaxy_evolution_py3"
+
+RUN conda install ipykernel
+RUN conda install scipy numpy matplotlib astropy pandas seaborn --yes
+
+RUN python -m ipykernel install --name galaxy_evolution_py3
+
+# Python 2
+RUN conda create -n galaxy_evolution_py2 python=2 --yes
+RUN /bin/bash -c "source activate galaxy_evolution_py2"
+
+RUN conda install ipykernel
+RUN conda install scipy numpy matplotlib astropy pandas seaborn --yes
+
+RUN wget http://cxc.harvard.edu/contrib/cosmocalc/downloads/cosmocalc-0.1.2.tar.gz
+RUN tar xvzf cosmocalc-0.1.2.tar.gz
+RUN cd cosmocalc-0.1.2 && python setup.py install
+
+RUN python -m ipykernel install --name galaxy_evolution_py2
+
+CMD ["jupyterhub-singleuser"]

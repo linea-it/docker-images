@@ -1,0 +1,45 @@
+FROM linea-singleuser
+
+# Python 3
+#RUN conda create -n galaxy_evolution_py3 python=3.6 --yes
+#RUN /bin/bash -c "source activate galaxy_evolution_py3" &&\
+#	conda install ipykernel &&\
+#	conda install numpy --yes &&\
+#	python -m ipykernel install --name galaxy_evolution_py3
+
+# Python 2
+#RUN conda create -n galaxy_evolution_py2 python=2 --yes
+#RUN /bin/bash -c "source activate galaxy_evolution_py2" &&\
+#	conda install ipykernel &&\
+#	conda install numpy --yes &&\
+
+#RUN wget http://cxc.harvard.edu/contrib/cosmocalc/downloads/cosmocalc-0.1.2.tar.gz
+#RUN tar xvzf cosmocalc-0.1.2.tar.gz
+#RUN /bin/bash -c "source activate galaxy_evolution_py2" &&\
+#	cd cosmocalc-0.1.2 && python setup.py install &&\
+#	python -m ipykernel install --name galaxy_evolution_py2
+
+ENV ORIG_PATH $PATH
+
+RUN conda create -n galaxy_evolution_py3 python=3.6 --yes
+
+RUN conda create -n galaxy_evolution_py2 python=2 --yes
+
+ENV PATH /opt/conda/envs/galaxy_evolution_py3/bin:$ORIG_PATH
+
+RUN conda install ipykernel
+
+RUN python -m ipykernel install --name galaxy_evolution_py3
+
+
+ENV PATH /opt/conda/envs/galaxy_evolution_py2/bin:$ORIG_PATH
+
+RUN conda install ipykernel
+
+RUN python -m ipykernel install --name galaxy_evolution_py2
+
+
+
+
+
+CMD ["jupyterhub-singleuser"]
