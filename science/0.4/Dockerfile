@@ -36,7 +36,7 @@ RUN pip install gatspy lmfit ellc
 
 # GCR Install
 
-RUN pip install GCR
+RUN pip install GCR h5py
 RUN wget https://github.com/LSSTDESC/gcr-catalogs/archive/v0.10.1.tar.gz
 RUN tar xf v0.10.1.tar.gz
 RUN /bin/bash -c 'cd gcr-catalogs-0.10.1/ &&\
