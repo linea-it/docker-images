@@ -94,6 +94,10 @@ RUN pip install quantities PyAstronomy
 
 RUN apt-get install -y sextractor
 
+#Sklearn
+
+RUN conda install --quiet --yes scikit-learn
+
 # kernel
 
 RUN python -m ipykernel install --name science 
