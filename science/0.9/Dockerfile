@@ -98,6 +98,10 @@ RUN apt-get install -y sextractor
 
 RUN conda install --quiet --yes scikit-learn
 
+#Rebound
+
+RUN pip install rebound
+
 # kernel
 
 RUN python -m ipykernel install --name science 
