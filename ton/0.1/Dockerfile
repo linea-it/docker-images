@@ -12,7 +12,13 @@ scikit-learn scikit-image glob2 urllib3
 
 RUN conda install --quiet --yes cartopy
 
-RUN pip install --pre astroquery
+RUN pip install --upgrade --pre astroquery
+
+# SORA
+
+RUN wget http://eups.linea.gov.br/jupyterhub/sora/sora-0.1.tar.gz
+RUN tar xf sora-0.1.tar.gz
+RUN /bin/bash -c 'cd $HOME/sora-0.1 && python setup.py install'
 
 # kernel
 
