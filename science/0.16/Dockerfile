@@ -143,7 +143,7 @@ RUN /bin/bash -c 'cd Sparse2D-2.1.4 && mkdir build && cd build && cmake -DCMAKE_
 RUN wget http://eups.linea.gov.br/external/cfitsio/cfitsio3370.tar.gz
 RUN tar xf cfitsio3370.tar.gz
 RUN /bin/bash -c 'cd cfitsio && ./configure --prefix=/opt/cfitsio3370 && make shared && make install'
-RUN wget http://eups.linea.gov.br/external/trilegal/trilegal-1.9.tar.gz
+RUN wget http://eups.linea.gov.br/external/trilegal/docker/trilegal-1.9.tar.gz
 RUN tar xf trilegal-1.9.tar.gz
 RUN /bin/bash -c 'cd trilegal-1.9/code &&\
 sed -i "s,LIBRARIES=,LIBRARIES= -L/opt/cfitsio3370/lib -lm /opt/cfitsio3370/lib/libcfitsio.a," Makefile &&\
